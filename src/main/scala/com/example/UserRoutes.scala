@@ -27,7 +27,7 @@ trait UserRoutes extends JsonSupport {
 
   val userRegistryActor: ActorRef = bind[ActorRef]
 
-  implicit lazy val timeout = Timeout(5.seconds)
+  implicit lazy val timeout: Timeout = Timeout(5.seconds)
 
   lazy val userRoutes: Route =
     pathPrefix("users") {

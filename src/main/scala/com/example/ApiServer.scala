@@ -13,7 +13,7 @@ import wvlet.airframe._
 trait ApiServer {
 
   // set up ActorSystem and other dependencies here
-  implicit val system = bind[ActorSystem]
+  implicit val system: ActorSystem = bind[ActorSystem]
   implicit val materializer: ActorMaterializer = ActorMaterializer()
   implicit val executionContext: ExecutionContext = system.dispatcher
 
