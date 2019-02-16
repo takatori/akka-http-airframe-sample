@@ -6,7 +6,6 @@ LABEL "com.github.actions.icon"="mic"
 LABEL "com.github.actions.color"="purple"
 
 
-LABEL "reposiory"=""
 LABEL "maintainer"="takatoix@gmail.com"
 
 ADD entrypoint.sh /entrypoint.sh
