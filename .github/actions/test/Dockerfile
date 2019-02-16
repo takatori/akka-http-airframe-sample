@@ -27,3 +27,4 @@ RUN \
   rm -r project && rm build.sbt && rm Temp.scala && rm -r target
 
 
+ENTRYPOINT ["sbt", "test"]
