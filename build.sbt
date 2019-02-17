@@ -1,6 +1,7 @@
 lazy val akkaHttpVersion = "10.1.5"
 lazy val akkaVersion     = "2.5.18"
 lazy val slickVersion    = "3.3.0"
+lazy val scalazVersion   = "7.2.19"
 
 lazy val root = (project in file(".")).
   settings(
@@ -25,6 +26,11 @@ lazy val root = (project in file(".")).
       "mysql" % "mysql-connector-java" % "6.0.6",
       "org.slf4j" % "slf4j-nop" % "1.6.4",
       "com.h2database" % "h2" % "1.4.196",
+
+      "org.scalaz" %% "scalaz-core"      % scalazVersion,
+      "org.scalaz" %% "scalaz-concurrent" % scalazVersion,
+      "org.scalaz" %% "scalaz-effect"     % scalazVersion,
+      "org.scalaz" %% "scalaz-iteratee"   % scalazVersion,
 
       "com.typesafe.akka" %% "akka-testkit"         % akkaVersion     % Test,
       "com.typesafe.akka" %% "akka-stream-testkit"  % akkaVersion     % Test,

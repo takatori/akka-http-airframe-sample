@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS todo(
+  id   INT          NOT NULL AUTO_INCREMENT,
+  body VARCHAR(255),
+
+  PRIMARY KEY (id)
+);
