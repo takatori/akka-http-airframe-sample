@@ -6,6 +6,7 @@ import slick.jdbc.H2Profile.api._
 
 import scala.concurrent.{ ExecutionContext, Future }
 import scala.util.control.NonFatal
+import ExecutionContext.Implicits.global
 
 object TodoRepositoryImpl {
 
@@ -18,8 +19,6 @@ class TodoRepositoryImpl(db: Database) extends TodoRepository with ToEitherOps {
   import Model._
 
   lazy val todos = TableQuery[TodoTable]
-
-  implicit val executor: ExecutionContext = context.dispatcher
 
   // Future[R]ではなくFuture[\/[Throwable, R]]を返すようにしたラッパー
   private def run[R](a: DBIOAction[R, NoStream, Nothing]): Future[\/[Throwable, R]] =

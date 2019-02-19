@@ -5,6 +5,7 @@ import com.example.repository.TodoRepository
 import scalaz.{ EitherT, \/ }
 
 import scala.concurrent.{ ExecutionContext, Future }
+import scalaz.std.scalaFuture.futureInstance
 
 object TodoActor {
 
