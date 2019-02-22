@@ -9,7 +9,8 @@ import scalaz.std.scalaFuture.futureInstance
 
 object TodoActor {
 
-  def props(todoRepository: TodoRepository) = Props(new TodoActor(todoRepository))
+  def props(todoRepository: TodoRepository) =
+    Props(new TodoActor(todoRepository))
 
   // 受信系
   sealed trait Command
@@ -44,27 +45,27 @@ class TodoActor(todoRepository: TodoRepository)
     def toEitherT: EitherT[Future, A, B] = EitherT[Future, A, B](self)
   }
 
-  private def findAll() =
+  private def findAll(): EitherT[Future, Throwable, Seq[TodoReply]] =
     for {
       todos <- todoRepository.findAll().toEitherT
     } yield todos.map(t => TodoReply(t.id, t.body))
 
-  private def findById(cmd: FindByIdCommand) =
+  private def findById(cmd: FindByIdCommand): EitherT[Future, Throwable, Option[TodoReply]] =
     for {
       todo <- todoRepository.findById(cmd.id).toEitherT
     } yield todo.map(t => TodoReply(t.id, t.body))
 
-  private def create(cmd: CreateCommand) =
+  private def create(cmd: CreateCommand): EitherT[Future, Throwable, CreatedReply] =
     for {
       createdId <- todoRepository.create(Todo(0, cmd.body)).toEitherT
     } yield CreatedReply(createdId)
 
-  private def update(cmd: UpdateCommand) =
+  private def update(cmd: UpdateCommand): EitherT[Future, Throwable, TodoActor.UpdatedReply.type] =
     for {
       _ <- todoRepository.update(Todo(cmd.id, cmd.body)).toEitherT
     } yield UpdatedReply
 
-  private def delete(cmd: DeleteCommand) =
+  private def delete(cmd: DeleteCommand): EitherT[Future, Throwable, TodoActor.DeletedReply.type] =
     for {
       _ <- todoRepository.delete(cmd.id).toEitherT
     } yield DeletedReply

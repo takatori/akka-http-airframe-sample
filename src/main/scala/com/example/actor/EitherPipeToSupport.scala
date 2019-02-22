@@ -7,7 +7,7 @@ import scalaz.{ -\/, \/, \/- }
 import scala.concurrent.{ ExecutionContext, Future }
 import scala.util.{ Failure, Success }
 
-// Future[\/[L, R]]をpipeで遅れるようにサポート
+// Future[\/[L, R]]をpipeで送れるようにサポート
 trait EitherPipeToSupport extends PipeToSupport {
 
   final class EitherPipeableFuture[L <: Throwable, R](val future: Future[\/[L, R]])(
@@ -32,8 +32,7 @@ trait EitherPipeToSupport extends PipeToSupport {
   }
 
   // Future[\/[L, R]] -> EitherPipeableFuture
-  implicit def eitherPipe[L <: Throwable, R](future: Future[\/[L, R]])(
-    implicit
-    ec: ExecutionContext): EitherPipeableFuture[L, R] = new EitherPipeableFuture(future)
+  implicit def eitherPipe[L <: Throwable, R](future: Future[\/[L, R]])(implicit ec: ExecutionContext): EitherPipeableFuture[L, R] =
+    new EitherPipeableFuture(future)
 
 }
