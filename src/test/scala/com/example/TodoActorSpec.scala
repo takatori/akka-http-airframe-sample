@@ -30,9 +30,24 @@ class TodoActorSpec extends TestKit(ActorSystem("testsystem"))
       expectMsg(CreatedReply(1))
     }
 
+    "update todo" in {
+      todoActor ! UpdateCommand(1, "update test")
+      expectMsg(UpdatedReply)
+    }
+
     "send todos" in {
       todoActor ! FindAllCommand
-      expectMsg(Seq(TodoReply(1, "test")))
+      expectMsg(Seq(TodoReply(1, "update test")))
+    }
+
+    "delete todo" in {
+      todoActor ! DeleteCommand(1)
+      expectMsg(DeletedReply)
+    }
+
+    "get todo" in {
+      todoActor ! FindByIdCommand(1)
+      expectMsg(None)
     }
   }
 
