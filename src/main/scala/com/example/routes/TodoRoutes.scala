@@ -1,13 +1,13 @@
-package com.example
+package com.example.routes
 
 import akka.actor.ActorRef
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
 import akka.http.scaladsl.model.StatusCodes
-import akka.http.scaladsl.server.{ ExceptionHandler, Route }
-import akka.util.Timeout
 import akka.http.scaladsl.server.Directives._
-import com.example.actor.TodoActorJsonSerializer
+import akka.http.scaladsl.server.{ ExceptionHandler, Route }
 import akka.pattern.ask
+import akka.util.Timeout
+import com.example.actor.TodoActorJsonSerializer
 
 import scala.util.control.NonFatal
 

@@ -8,6 +8,7 @@ import akka.http.scaladsl.Http.ServerBinding
 import akka.http.scaladsl.server.Route
 import akka.http.scaladsl.settings.ServerSettings
 import akka.stream.ActorMaterializer
+import com.example.routes.UserRoutes
 import wvlet.airframe._
 
 trait ApiServer {

@@ -1,4 +1,4 @@
-package com.example
+package com.example.routes
 
 import akka.Done
 import akka.actor.ActorSystem
