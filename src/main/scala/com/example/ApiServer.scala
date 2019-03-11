@@ -23,7 +23,11 @@ trait ApiServer {
 
   def start(host: String, port: Int, settings: ServerSettings): Future[ServerBinding] = {
 
-    val bindingFuture = Http().bindAndHandle(handler = routes, interface = host, port = port, settings = settings)
+    val bindingFuture = Http().bindAndHandle(
+      handler = routes,
+      interface = host,
+      port = port,
+      settings = settings)
 
     bindingFuture.onComplete {
       case Success(binding) =>

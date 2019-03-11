@@ -1,15 +1,16 @@
 package com.example
 
-import akka.actor.{ ActorRef, ActorSystem }
+import akka.actor.{ActorRef, ActorSystem}
 import akka.http.scaladsl.settings.ServerSettings
 import wvlet.airframe._
 
 import scala.concurrent.duration._
 import akka.util.Timeout
 import slick.jdbc.H2Profile.api._
-import scala.concurrent.ExecutionContext
 
-import com.example.repository.{ TodoRepository, TodoRepositoryImpl }
+import scala.concurrent.ExecutionContext
+import com.example.repository.{TodoRepository, TodoRepositoryImpl}
+import com.example.routes.{TodoApiServer, TodoRoutes}
 
 object Main {
 
